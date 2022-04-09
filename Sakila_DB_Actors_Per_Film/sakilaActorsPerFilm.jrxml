@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sakActorsPerFilm" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7ea2730a-c484-46de-8a75-1d9dfa5786af">
+	<property name="com.jaspersoft.studio.data.sql.tables">
+		<![CDATA[ZmlsbV9hY3RvciAsMTE3LDI4LDk2ZWQyOGIyLTQ0OTEtNDcxNi1hYzM2LTY0Yzc0YzY2NjIyZTtm
+aWxtICwxNSw0MSw2N2Q5YjQwMi04ZGU2LTQxMTQtYmQ3My0xMzFhMzhlNzUyNzM7YWN0b3IgLDIy
+NSwxNSw4NTljM2VjYS1hZTk0LTRmYzQtODMxMC1iZmQyYjkwYzdjNWQ7]]>
+	</property>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sakila"/>
+	<queryString>
+		<![CDATA[SELECT film_actor.actor_id,
+	title,
+	description,
+	actor.first_name,
+	actor.last_name,
+	film_actor.film_id AS id_film,
+	film.film_id
+FROM film_actor
+	left join film ON 
+	 film.film_id = film_actor.film_id 
+	left join actor ON 
+	 film_actor.actor_id = actor.actor_id 
+ORDER BY film_actor.actor_id ASC]]>
+	</queryString>
+	<field name="actor_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="actor_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="actor_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="film_actor"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="title" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="title"/>
+		<property name="com.jaspersoft.studio.field.label" value="title"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="film"/>
+	</field>
+	<field name="description" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="description"/>
+		<property name="com.jaspersoft.studio.field.label" value="description"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="film"/>
+	</field>
+	<field name="first_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="first_name"/>
+		<property name="com.jaspersoft.studio.field.label" value="first_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="actor"/>
+	</field>
+	<field name="last_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="last_name"/>
+		<property name="com.jaspersoft.studio.field.label" value="last_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="actor"/>
+	</field>
+	<field name="id_film" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="film_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="id_film"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="film_actor"/>
+	</field>
+	<field name="film_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="film_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="film_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="film"/>
+	</field>
+	<variable name="ActorsNumber" class="java.lang.Integer" incrementType="Group" incrementGroup="Group1" calculation="Count">
+		<variableExpression><![CDATA[$F{actor_id}]]></variableExpression>
+	</variable>
+	<variable name="maxActors" class="java.lang.Integer" calculation="Highest">
+		<variableExpression><![CDATA[$V{Group1_COUNT}]]></variableExpression>
+	</variable>
+	<variable name="avgActors" class="java.lang.Float" calculation="Average">
+		<variableExpression><![CDATA[$V{Group1_COUNT}]]></variableExpression>
+	</variable>
+	<group name="Group1">
+		<groupExpression><![CDATA[$F{actor_id}]]></groupExpression>
+		<groupHeader>
+			<band height="79">
+				<rectangle>
+					<reportElement x="0" y="15" width="40" height="30" forecolor="#6E6868" backcolor="#877F7F" uuid="d08a922d-71c3-48a3-91a1-d441cfca654d"/>
+				</rectangle>
+				<textField evaluationTime="Group" evaluationGroup="Group1">
+					<reportElement x="0" y="15" width="40" height="30" forecolor="#FFFFFF" uuid="ba558bb8-040b-4f8c-b1f7-7762c03a7d30"/>
+					<textElement textAlignment="Center">
+						<font size="18"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{ActorsNumber}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="80" y="20" width="269" height="21" uuid="466b7d0f-4ea0-4b8c-b846-f61108bf35f2">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6c582c23-9fe1-41cc-bed3-abef3f0f1633"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="16"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{first_name}+"  "+$F{last_name}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="60" y="45" width="219" height="30" uuid="2f19787e-0291-429c-8337-02784584278b"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12"/>
+					</textElement>
+					<text><![CDATA[Συμμετείχε στις παρακάτω ταινίες:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="80" y="0" width="178" height="20" uuid="379dd557-2cf7-45c6-aaf3-4417a8e92a16">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6c582c23-9fe1-41cc-bed3-abef3f0f1633"/>
+					</reportElement>
+					<textElement>
+						<font fontName="Arial" size="12"/>
+					</textElement>
+					<text><![CDATA[Ονοματεπώνυμο Ηθοποιού]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="56">
+				<textField>
+					<reportElement x="220" y="10" width="60" height="20" uuid="a14e3aa5-1774-4999-8988-ffc4957e019a"/>
+					<textElement textAlignment="Right">
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{Group1_COUNT}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="100" y="10" width="120" height="20" uuid="fd9278c4-854f-4b4e-a6a0-183f29a34210"/>
+					<textElement textAlignment="Left">
+						<font fontName="Arial" size="14"/>
+					</textElement>
+					<text><![CDATA[Σύνολο ταινιών:]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="107" y="0" width="340" height="30" uuid="38549237-2174-4035-bd73-25702f6c0c19"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Εργασία JasperSoft Studio Νοέμβρη 2021]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="48" width="254" height="30" uuid="3525a176-4add-4a76-9987-49f2de2931f8"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Γεώργιος Μανουσάκης , TP4909]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="52" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="39" splitType="Stretch">
+			<textField>
+				<reportElement x="60" y="0" width="20" height="20" uuid="c4c422c2-98dc-4f54-b458-832b9fe841ed"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{Group1_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="0" width="168" height="30" uuid="9866aca5-a62e-40b2-906b-ff4bfb40b137"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{title}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="0" width="275" height="30" uuid="77e31987-3806-45f3-b1f6-ec244f577f6e"/>
+				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="39" splitType="Stretch">
+			<textField>
+				<reportElement x="180" y="0" width="100" height="30" uuid="3f11e447-251a-4a2f-af8d-d3140f86deca"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Σελίδα " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="280" y="0" width="100" height="30" uuid="3a4b3f6b-4722-4fce-befa-4e0ed91c8c23"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[" από " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="455" y="0" width="100" height="30" uuid="3d8b5ccf-3334-4774-8a6c-156256bbd46b"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm:ss a">
+				<reportElement x="0" y="0" width="100" height="30" uuid="44f3de8e-1ca6-487f-9a15-63b2b9552a60"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="213" splitType="Stretch">
+			<staticText>
+				<reportElement x="180" y="40" width="100" height="30" uuid="a68d5e8d-9148-4ba0-ae21-4c52fdac4016"/>
+				<textElement verticalAlignment="Top"/>
+				<text><![CDATA[Συνολικός Αριθμός Ηθοποιών:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="179" y="69" width="100" height="30" uuid="e4f3cf1b-46f1-43b4-9a06-3ef0f676c48e"/>
+				<text><![CDATA[Μέγιστος Αριθμός ταινιών ανά Ηθοποιό:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="190" y="10" width="190" height="30" uuid="3b8446f0-b998-4ee2-afe6-623e2b06eb1b"/>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Στατιστικά Στοιχεία]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="280" y="39" width="100" height="30" uuid="814e5a3e-184d-4643-bb95-45593d8f3309"/>
+				<textFieldExpression><![CDATA[$V{ActorsNumber}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="69" width="100" height="30" uuid="da4ee5ad-4353-40a3-8344-7527edaee03c"/>
+				<textFieldExpression><![CDATA[$V{maxActors}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
