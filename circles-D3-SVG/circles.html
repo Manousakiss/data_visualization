@@ -1,0 +1,50 @@
+<html>
+  <!DOCTYPE html>
+  <meta charset="utf-8">
+  <style>
+    circle {
+    fill-opacity: .50;
+    stroke: rgb(31, 119, 180);
+    stroke-width: 1px;
+    }
+  </style>
+  <body>
+    <div id="viz"></div>
+      <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script>
+      var sampleSVG = d3.select("#viz")
+        .append("svg")
+        .attr("width", 1024)
+        .attr("height", 800);
+      d3.csv("circles1.csv").then(function(dataset) {
+        // psaxnontas ligo parapanw sto internet eida oti ayti i lysi den einai swsti
+        // dioti an deite kai sto console einai to 45.
+        // to d3.max() epistrefei to max se strings oxi integers
+        var maxi= d3.max(dataset, function(d) { return d.radius; } );
+        console.log("maxi is " + maxi);
+        //
+        //enw edw trexw ola ta radius gia to maximum kai einai swsto
+        //kathws to maximum einai 120.
+        // edw enw trexw ola ta radius tou lew oti einai integer kai bres to maximum
+        dataset.forEach(function(d) {
+                  d.radius = parseInt(d.radius);
+              });
+
+              var maximum = d3.max(dataset, function(d) { return d.radius; });
+              console.log("maximum is " + maximum);
+        
+        let colors= d3.scaleLinear()
+        .domain([0, maximum])
+        .range(['yellow', 'red'])
+        sampleSVG.selectAll("circle")
+        .data(dataset)
+        .enter().append("circle")
+        .attr("cx", function(d) { return d.x; })
+        .attr("cy", function(d) { return d.y; })
+        .attr("r", function(d) { return d.radius})
+        .style("fill", function(d) {return colors(d.radius)});
+       });
+    </script>
+  </body>
+</html>
+ 
