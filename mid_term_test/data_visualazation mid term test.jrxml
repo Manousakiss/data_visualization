@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Manousakis_tp4909" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="574e8468-4062-4fdc-9ba9-bd01e3aa69a3">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sakila"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT film_actor.actor_id, first_name, last_name, count(film_id) as cnt
+FROM film_actor LEFT JOIN actor on film_actor.actor_id=actor.actor_id GROUP BY actor_id
+ORDER BY cnt]]>
+	</queryString>
+	<field name="actor_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="actor_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="actor_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="film_actor"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="first_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="first_name"/>
+		<property name="com.jaspersoft.studio.field.label" value="first_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="actor"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="last_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="last_name"/>
+		<property name="com.jaspersoft.studio.field.label" value="last_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="actor"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cnt" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="cnt"/>
+		<property name="com.jaspersoft.studio.field.label" value="cnt"/>
+	</field>
+	<variable name="summ" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{cnt}]]></variableExpression>
+	</variable>
+	<variable name="countall" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{cnt}]]></variableExpression>
+	</variable>
+	<variable name="avg" class="java.lang.Float" calculation="Average">
+		<variableExpression><![CDATA[$F{cnt}]]></variableExpression>
+	</variable>
+	<group name="actor_id">
+		<groupExpression><![CDATA[$F{actor_id}]]></groupExpression>
+	</group>
+	<group name="first_name">
+		<groupExpression><![CDATA[$F{first_name}]]></groupExpression>
+	</group>
+	<group name="last_name">
+		<groupExpression><![CDATA[$F{last_name}]]></groupExpression>
+	</group>
+	<group name="cnt">
+		<groupExpression><![CDATA[$F{cnt}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="75" splitType="Stretch">
+			<staticText>
+				<reportElement x="80" y="0" width="400" height="30" uuid="044745e5-343c-4b12-9ca2-fc79197cca41"/>
+				<textElement textAlignment="Center">
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[Data visualization test]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="40" width="240" height="30" uuid="141d5c06-8e68-4262-8a8e-d6becdee4e0c"/>
+				<textElement textAlignment="Center">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[full name , personal academic number]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement x="100" y="-4" width="50" height="20" uuid="51ec9b02-5aa6-49d4-89d2-062a18a946ca">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="43488a61-e334-4998-851b-f57ae9c5398e"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Κωδικός]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="171" y="-4" width="110" height="20" uuid="3927a8b0-1c10-4edd-91c8-3b5768966cc0">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5dfad21f-7877-4c3f-a667-990b45257c4c"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Όνομα]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="309" y="-4" width="100" height="20" uuid="9700d724-df45-4f66-9240-99d6a89a03bc">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e9a1316a-a10f-4ad2-851a-4cedd8560e23"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Επίθετο]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="430" y="-4" width="50" height="20" uuid="30cd51e6-9c28-4bb9-8c99-c7f2fbb14f56">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3d9016f2-a248-4817-ba6a-504db6e8146b"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ταινίες]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="-4" width="50" height="20" uuid="487df1c2-aa50-446c-b5cf-d8a5882e05c5"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Α/Α]]></text>
+			</staticText>
+			<line>
+				<reportElement x="30" y="16" width="469" height="1" uuid="28592248-d52f-4893-b42a-0b496dc8f22b"/>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="100" y="-14" width="40" height="20" uuid="14d0d7f9-904d-4041-b704-9ef4c65e1432">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="43488a61-e334-4998-851b-f57ae9c5398e"/>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{actor_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="-14" width="100" height="20" uuid="8933d7a8-31cb-4a57-8bb3-0629ea3af2fd">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5dfad21f-7877-4c3f-a667-990b45257c4c"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{first_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="309" y="-14" width="100" height="20" uuid="5a3e00d7-fb09-4130-9da9-2d234450c60f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e9a1316a-a10f-4ad2-851a-4cedd8560e23"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{last_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="430" y="-14" width="50" height="20" uuid="d2c74554-005f-4cab-b645-ea7a01be5238">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3d9016f2-a248-4817-ba6a-504db6e8146b"/>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{cnt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="30" y="-14" width="30" height="20" uuid="77fb6bb6-5e82-4948-9c47-d21a9fb36407"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="19" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="50">
+			<textField pattern="M/d/yy h:mm a">
+				<reportElement x="0" y="30" width="100" height="20" uuid="7cc60a1f-ae3a-44d0-98df-9568945812e6"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="480" y="30" width="18" height="20" uuid="13cf3946-5993-44cc-a8c3-8fa2b45dd658"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="460" y="30" width="20" height="20" uuid="c2400113-e7fc-4d75-904e-b931f796263a"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="430" y="30" width="30" height="20" uuid="ffbb8cf8-a3b7-4786-9917-87ccaaef1b34"/>
+				<text><![CDATA[Page]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="470" y="30" width="10" height="20" uuid="07324f6e-9b9c-49ae-b732-3da5ed22bc75"/>
+				<text><![CDATA[of]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="349" y="-10" width="100" height="30" uuid="b00edae1-bab2-4e5c-9b9b-ddc0eca91cb1"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Προοδευτικό σύνολο:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="450" y="-10" width="30" height="30" uuid="b9146d25-b3f2-4867-8ae1-2a8c661fad7d"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{summ}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="67">
+			<staticText>
+				<reportElement x="380" y="0" width="80" height="20" uuid="570abdc8-a527-4ea1-a721-b646ff137fb0"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Σύνολο ταινιών:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="20" width="80" height="30" uuid="5a1da6b2-19bc-4ece-a82f-59c247664d28"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Μέσος όρος:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="470" y="20" width="50" height="30" uuid="cbb45b17-96d4-46e9-b1ef-18c729141d07"/>
+				<textFieldExpression><![CDATA[$V{avg}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="470" y="0" width="50" height="20" uuid="ff4e170e-9153-42b3-a8d6-d150484fd17e"/>
+				<textFieldExpression><![CDATA[$V{countall}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
